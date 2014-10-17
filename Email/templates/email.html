@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block title %} Amazing Email Service in Python! {% endblock %} {% block body %}
+
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#email-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="email-navbar-collapse-1">
+            <div class="btn-compose pull-left">
+                <button class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-send"></span> Send
+                </button>
+            </div>
+
+            <div class="btn-group pull-right">
+                <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                    Email Service Options
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>SendGrid</li>
+                  <li>Some Other</li>
+                  <li>SendGrid Failover to Some Other</li>
+                  <li>Some Other Failover to SendGrid</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="content-container clearfix">
+        <h1 class="content-title">Compose</h1>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input id="tokenfield" type="text" class="form-control" placeholder="To" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Cc" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Bcc" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" />
+            </div>
+            <textarea class="form-control" placeholder="message"></textarea>
+            <div class="btn-send">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
