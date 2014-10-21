@@ -5,3 +5,7 @@ textarea.form-control {
 .navbar-default {
 	padding: 5px 0px;
 }
+
+.form-control-feedback {
+	top: 0px;
+}
