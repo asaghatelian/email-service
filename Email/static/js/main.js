@@ -20,7 +20,7 @@ $(function() {
             
             _.bindAll(this, 'sendEmail', 'render');
 
-			$('button.sendEmail').on('click', _.debounce(function() {
+			$('#email-form').submit(_.debounce(function() {
 				self.sendEmail();
 			}, 500, true));
             
@@ -77,7 +77,7 @@ $(function() {
         },
 
         sendEmail: function(model) {
-            alert('reached')
+            console.log('reached')
             var message = new Object();
             message.from = $('#from-input').val();
             message.to = $('#to-input').val();
