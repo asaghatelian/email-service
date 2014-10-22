@@ -17,28 +17,30 @@ class MandrillEmailService(object):
 				'type': 'to'
 			})
 
-			if 'cc' in data:
+			if 'cc' in data and data['cc'] != '':
 				message['to'].append({
 					'email': data['cc'],
 					'type': 'cc'
 				})
 
-			if 'bcc' in data:
+			if 'bcc' in data and data['bcc'] != '':
 				message['to'].append({
 					'email': data['bcc'],
 					'type': 'bcc'
 				})
 
-			if 'subject' in data:
+			if 'subject' in data and data['cc'] != '':
 				message['subject'] = data['subject']
 
-			if 'text' in data:
+			if 'text' in data and data['cc'] != '':
 				message['text'] = data['message']
 			else:
 				message['text'] = ''
 			
 			result = self.mandrill_client.messages.send(message=message, async=False)
-			return True
+
+			return result[0]['status'] == 'sent'
+		
 		except mandrill.Error, e:
 			print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
 			return False

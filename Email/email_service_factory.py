@@ -10,10 +10,10 @@ class EmailServiceFactory:
 
 		if config[type] != '':
 			if type == 'sendgrid':
-				service = MandrillEmailService(config[type])
+				service = SendgridEmailService(config[type])
 				return service
 			elif type == 'mandrill':
-				service = SendgridEmailService(config[type])
+				service = MandrillEmailService(config[type])
 				return service
 			else:
 				print "not found!"

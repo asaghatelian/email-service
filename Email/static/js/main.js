@@ -1,12 +1,32 @@
 $(function() {
 
-    var Message = Backbone.Model.extend();
-
     var isValidEmail = function(emailAddress) {
         if (emailAddress == undefined || emailAddress == '') {
             return false;
         }
     }
+    
+    // Enables select drop down
+    $('.selectpicker').selectpicker();
+    
+    var Message = Backbone.Model.extend({
+        urlRoot: "/email",
+        defaults: {
+            "from":  "arinks@gmail.com",
+            "subject":  "",
+            "message":  "",
+            "type" : "1"
+          },
+
+          sync: function( method, model, options ) {
+            var oldBackboneSync = Backbone.sync;
+            if ( method === 'create' && options.data ) {
+                options.data = JSON.stringify(options.data);
+                options.contentType = 'application/json';
+            } // else, business as usual.
+            return oldBackboneSync.apply(this, [method, model, options]);
+        }
+    });
 
     var AppView = Backbone.View.extend({
         events: {
@@ -71,22 +91,48 @@ $(function() {
                                 message: 'The input is not a valid email address'
                             }
                         }
-                    }
+                    },
+                    "subject" : "",
+                    "message" : ""
                 }
             });
         },
 
         sendEmail: function(model) {
-            console.log('reached')
-            var message = new Object();
-            message.from = $('#from-input').val();
-            message.to = $('#to-input').val();
-            message.cc = $('#cc-input').val();
-            message.bcc = $('#bcc-input').val();
-            message.subject = $('#subject-input').val();
-            message.message = $('#message-input').val();
+            var self = this;
+            var message = new Message();
+            var form = $('#email-form');
 
+            form.data('bootstrapValidator').validate();
+            if(!form.data('bootstrapValidator').isValid()){
+                return false;
+            }
 
+            message.set({
+                from: $('#from-input').val(),
+                to: $('#to-input').val(),
+                cc: $('#cc-input').val(),
+                bcc: $('#bcc-input').val(),
+                subject: $('#subject-input').val(),
+                message: $('#message-input').val()
+            })
+
+            message.save(null, {
+                success: function(model, status){
+                    $('#results-modal').on('hide.bs.modal', function() {
+                        form.data('bootstrapValidator').resetForm(true);
+                    })
+                    
+                    $('#results-modal .modal-body').html(status.text);
+                    $('#results-modal').modal('show');
+                },
+                error: function(model, response){
+                    var error = JSON.parse(response.responseText);
+                    
+                    $('#results-modal .modal-body').html(error['text']);
+                    $('#results-modal').modal('show');
+                }
+            });
         },
 
         render: function(model) {

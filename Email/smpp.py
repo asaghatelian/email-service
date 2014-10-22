@@ -13,17 +13,17 @@ class SMPP:
 		global email_service_list
 		email_service_list = [service_factory.create(config, 'mandrill'), service_factory.create(config, 'sendgrid')]
 	
-	def send_email(self,data,type=None):
+	def send_email(self,data):
 		failure_count = 0
 		
-		if type != None:
-			print 'None'
 		for service in email_service_list:
 			if service.send(data) == True:
-				return self.get_response('Email has been successfully sent with ' + str(failure_count) + ' failures.')
+				return self.get_response('Email has been successfully sent with ' + str(failure_count) + ' service failure(s).')
+			
 			failure_count += 1
 			print 'Service Failed'
 		
+		print 'all failed'
 		return self.get_error('All services have failed!')
 
 	def get_response(self,message):	
