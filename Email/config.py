@@ -4,7 +4,7 @@ CONFIG = {
 	},
 
 	'sendgrid': {
-		'username' : '',
-		'password' : ''
+		'username' : 'ubergrid',
+		'password' : 's3ndgr1d123'
 	}
 }

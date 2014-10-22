@@ -1,5 +1,6 @@
 from flask import Flask, url_for
-import os
+from smpp import SMPP
+import os,config
 
 Email = Flask(__name__)
 

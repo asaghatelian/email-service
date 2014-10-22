@@ -1,5 +1,5 @@
-from MandrillEmailService import *
-from SendgridEmailService import *
+from mandrill_email_service import MandrillEmailService
+from sendgrid_email_service import SendgridEmailService
 
 class EmailServiceFactory:
 
@@ -7,9 +7,7 @@ class EmailServiceFactory:
 		self.config = config
 
 	def create(self, config, type):
-		print "creating a service of type " + type + " with configuration of:"
-		print config[type]
-		print ''
+
 		if config[type] != '':
 			if type == 'mandrill':
 				service = MandrillEmailService(config[type])

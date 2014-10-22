@@ -1,6 +1,6 @@
 from flask import render_template, request, json, jsonify
 from Email import Email, config
-from SMPP import *
+from smpp import SMPP
 
 @Email.route('/')
 def index():
@@ -9,14 +9,22 @@ def index():
 @Email.route('/email', methods=['POST'])
 def email():
 	try:
-	    data = json.loads(request.data)
+		data = json.loads(request.data)
 	except Exception:
 		return get_error('Invalid json object')
 
-	smpp = SMPP(config.CONFIG)
-	#smpp.send_email(data)
+	if not isValid(data):
+		return get_error('Invalid json object')
 
-	return ''
+	if SMPP.email_service_list == None:
+		smpp = SMPP(config.CONFIG)
+	
+	return smpp.send_email(data)
 
 def get_error(error_txt):	
 	return jsonify(error=400, text=error_txt), 400
+
+def isValid(data):
+	if 'to' not in data or 'from' not in data:
+		return False
+	return True
