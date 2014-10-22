@@ -38,7 +38,6 @@ class MandrillEmailService(object):
 				message['text'] = ''
 			
 			result = self.mandrill_client.messages.send(message=message, async=False)
-			print result
 			return True
 		except mandrill.Error, e:
 			print 'A mandrill error occurred: %s - %s' % (e.__class__, e)

@@ -9,10 +9,10 @@ class EmailServiceFactory:
 	def create(self, config, type):
 
 		if config[type] != '':
-			if type == 'mandrill':
+			if type == 'sendgrid':
 				service = MandrillEmailService(config[type])
 				return service
-			elif type == 'sendgrid':
+			elif type == 'mandrill':
 				service = SendgridEmailService(config[type])
 				return service
 			else:
