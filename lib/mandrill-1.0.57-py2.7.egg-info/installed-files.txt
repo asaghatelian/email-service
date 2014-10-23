@@ -1,0 +1,10 @@
+../mandrill.py
+../mandrill.pyc
+./
+top_level.txt
+dependency_links.txt
+PKG-INFO
+SOURCES.txt
+requires.txt
+../../../../bin/mandrill
+../../../../bin/sendmail.mandrill
