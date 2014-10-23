@@ -3,6 +3,12 @@
 #### Overview
 This is an attempt at learning Flask, a Python web framework and using it to do something useful. The project will attempt to use SendGrid and Mandrill email services in order to allow the user to send emails. The project will automatically do failover if one of the services are down or none-responsive.
 
+#### Problem
+Need a reliable emailing service, and do not want to rely on a single point of failure with an email service
+
+#### Solution
+Use multiple email services with automatic failover capability in order to guarantee message delivery
+
 #### Program Explaination
 The project is a simple email form which is connected to Mandrill and SendGrid services. The user is allowed to use any email address for the TO and FROM fields and write a text based email. Yahoo apparently has issues with Mandrill and hence you won't be able to use a Yahoo email address for the From field ([more info](http://comluv.com/yahoo-changed-policy-emails-using-services-like-mandrill)). Currenlty the drop down for simulating different situations is not connected to the backend, but you can simulate a failure of one of the services by updating the API credentials in the **config.py** file. The backend will attempt to send the email via the first service and if it fails, it will immediately try the second service. If both services fail, it will notify the user of the failure.
 
