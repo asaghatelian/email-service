@@ -76,6 +76,9 @@ I have used the rest of the technology stack in previous projects, with the exce
 
 ---
 
+### Shortcomings
+I feel like the main areas that I failed to complete or properly code would have to be in writing test cases as well as better organization of the backend code. I found the whole process very pleasant but I realize that I am not well versed in the best practices of Python programming and Flask program organization. 
+
 ### Next Steps
 
 `TODO` Write test cases for front and backend. I should have started this project with writing test cases before coding, but I wanted to finish it within the timeframe that I had allowed myself
