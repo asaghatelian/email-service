@@ -89,3 +89,4 @@ I feel like the main areas that I failed to complete or properly code would have
 
 `TODO` Add WYSIWYG editor for the email message composer and allow the user to send HTML emails
 
+`TODO` Deploy the code to a server and host it properly
